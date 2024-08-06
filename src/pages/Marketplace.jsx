@@ -15,6 +15,9 @@ const mockFetchListings = async () => {
   ];
 };
 
+// Note: In a real application, this function would be replaced with an actual API call
+// to fetch current marketplace listings and prices from the Solana blockchain or a database.
+
 const Marketplace = () => {
   const { toast } = useToast();
   const [newListing, setNewListing] = useState({ name: '', price: '' });

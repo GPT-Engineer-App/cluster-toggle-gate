@@ -16,6 +16,9 @@ const mockSearchDomains = async (query) => {
   return domains;
 };
 
+// Note: In a real application, this function would be replaced with an actual API call
+// to fetch domain prices and availability from the Solana blockchain or a price oracle.
+
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
