@@ -4,17 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
-const mockSearchDomains = async (query) => {
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  const domains = [
-    { name: `${query}.sol`, available: true, price: 5 },
-    { name: `${query}domain.sol`, available: true, price: 3 },
-    { name: `my${query}.sol`, available: false, price: 10 },
-  ];
-  return domains;
-};
+import { searchDomains } from '../services/solanaService';
 
 // Note: In a real application, this function would be replaced with an actual API call
 // to fetch domain prices and availability from the Solana blockchain or a price oracle.
@@ -25,7 +15,7 @@ const Search = () => {
 
   const { data: domains, isLoading, refetch } = useQuery({
     queryKey: ['domains', searchTerm],
-    queryFn: () => mockSearchDomains(searchTerm),
+    queryFn: () => searchDomains(searchTerm),
     enabled: !!searchTerm,
   });
 

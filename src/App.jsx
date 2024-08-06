@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Connection, clusterApiUrl } from '@solana/web3.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
@@ -9,9 +10,11 @@ import Marketplace from "./pages/Marketplace";
 import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
+const connection = new Connection(clusterApiUrl('devnet'));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <ConnectionProvider value={connection}>
     <TooltipProvider>
       <Toaster />
       <BrowserRouter>
@@ -25,6 +28,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </ConnectionProvider>
   </QueryClientProvider>
 );
 
